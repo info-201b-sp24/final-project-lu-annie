@@ -2,8 +2,6 @@ library(shiny)
 library(ggplot2)
 library(plotly)
 
-dataset <- diamonds
-
 ui <- navbarPage(
   "Analysis of Amazon Marketplace Products",
   tabPanel(
@@ -46,12 +44,12 @@ ui <- navbarPage(
       titlePanel("Chart 1"),
       sidebarLayout(
         sidebarPanel(
-          tags$h3("A textual description of what the chart attempts to answer/understand",style = "font-size: 18px; font-weight: normal; line-height: 1.5;")
+          tags$h3("This chart attempts to answer the question: How are ratings of a product on Amazon correlated with the price of the product? It creates a scatterplot of items' ratings along with their price, and the slider function can be used to zoom in on specific rating ranges for products. Hover over any mark to view the product's rating and price.",style = "font-size: 18px; font-weight: normal; line-height: 1.5;")
         ),
         mainPanel(
           plotlyOutput("chart1"),
-          sliderInput("obs", "Number of observations:", 
-                      min = 1, max = 2000, value = 500)
+          sliderInput("ratings", "Star Ratings:",
+                      min = 0, max = 5, step = 0.1, value = c(0, 5)),
         )
       )
     )
