@@ -10,20 +10,20 @@ ui <- navbarPage(
       titlePanel("Introduction"),
       sidebarLayout(
         sidebarPanel(
-          tags$h3("This study aims to investigate the relationship between the price of a product sold on Amazon, and its rating. The results from this study will be used to drive design decisions for what types of products businesses on Amazon should release in order to leave consumers satisfied with both price and condition, usefulness, and durability of a product.",style = "font-size: 18px; font-weight: normal; line-height: 1.5;"),
+          tags$h3("This study aims to investigate relationships between the categories, prices, ratings, and bestsellers on the popular online e-commerce platform Amazon. The results from this study will be used to drive design decisions for what types of products businesses on Amazon should release in order to leave consumers satisfied with both price and condition, usefulness, and durability of a product.",style = "font-size: 18px; font-weight: normal; line-height: 1.5;"),
           img(src = "https://www.hatchwise.com/wp-content/uploads/2022/08/Amazon-Logo-2000-present-1024x576.jpeg", height=150, width=250)
         ),
         mainPanel(
           h3("How are ratings of a product on Amazon related to the price of the product?"),
           h3("Which categories have the best selling Amazon products?"),
           h3("Are number of purchases in the last month and number of reviews correlated?"),
-          tags$h3("The dataset can be found at", tags$a("https://www.kaggle.com/datasets/asaniczka/amazon-products-dataset-2023-1-4m-products/data?select=amazon_products.csv"),
+          tags$h3("The dataset can be found here: ", tags$a(href = "https://www.kaggle.com/datasets/asaniczka/amazon-products-dataset-2023-1-4m-products/data?select=amazon_products.csv", "kaggle.com/datasets/asaniczka/amazon-products-dataset-2023-1-4m-products/data?select=amazon_products.csv."),
 
-            ". The person that collected the data was a user named ASANICZKA.
+            "The person that collected the data was a user named ASANICZKA.
              
              The data from the csv files were scraped from Amazon.com.
              
-             The data was collected in order to get an in-depth idea of what products sell best, which SEO titles generate the most sales, the best price range for a product in a given category, and much more." ,style = "font-size: 14px; font-weight: normal; line-height: 1.5;"),
+             The data was collected in order to get an in-depth idea of what products sell best, which SEO titles generate the most sales, the best price range for a product in a given category, and much more. The dataset used for this project is a smaller subset with 110443 observations instead of the original 1.4 million. The data was filtered to remove nulls and product names along with other trivial information for easier loading and analysis." ,style = "font-size: 14px; font-weight: normal; line-height: 1.5;"),
              
           tags$h3("Rows: 1426337",style = "font-size: 14px; font-weight: normal; line-height: 1.5;"),
              
@@ -96,10 +96,15 @@ ui <- navbarPage(
       titlePanel("Conclusion"),
       sidebarLayout(
         sidebarPanel(
-          tags$h3("Takeaways",style = "font-size: 18px; font-weight: normal; line-height: 1.5;")
+          tags$h3("The most important insight learned is that there are specific categories on Amazon that have products that on average, contain more bestsellers than other categories. The broader implications of this insight mean that for people on Amazon looking to sell items, or for current Amazon businesses in the competition, they should look at the trends of what people buy a lot of (aka bestsellers) in order to beat their competitors or break into the Amazon marketplace.",style = "font-size: 18px; font-weight: normal; line-height: 1.5;")
         ),
         mainPanel(
-          h3("3 insights")
+          h3("How are ratings of a product on Amazon related to the price of the product?"),
+          tags$h3("Insight #1: There appears to be no specific relationship between the rating and price of products on Amazon. As seen in Chart 1, the categories are not the same and don't have many commonalities when switching between average prices for categories and average ratings for categories. If they were related, we would probably see higher priced products having either lower or higher ratings, or lower priced products having higher or lower ratings.",style = "font-size: 14px; font-weight: normal; line-height: 1.5;"),
+          h3("Which categories have the best selling Amazon products?"),
+          tags$h3("Insight #2: The top 3 categories that contain the best selling Amazon products are (1) Automotive Tools and Equipment with 139 bestselling products in the dataset, (2) Home Decor Product with 125 bestselling products, and (3) Toys & Games with 92 bestselling products. The rest of the bestselling categories (up to top 10) can be viewing via the Chart 2 tab.",style = "font-size: 14px; font-weight: normal; line-height: 1.5;"),
+          h3("Are number of purchases in the last month and number of reviews correlated?"),
+          tags$h3("Insight #3: The number of purchases in the last month for an Amazon product is weakly positively correlated with the number of reviews for that product. The limitation is that the variables being plotted are purchases in the last month compared to total reviews, which can change depending on how much people are buying in a month. It would be more accurate to analyze total purchases overall, but from the correlation, a 0.269 correlation coefficient suggests a weakly positive relationship between increase in purchases in the last month and the number of reviews for the product. 1000 data points were plotted for this correlation in Chart 3 (though more may have produced a more accurate result).",style = "font-size: 14px; font-weight: normal; line-height: 1.5;"),
         )
       )
     )

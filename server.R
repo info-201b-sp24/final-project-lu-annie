@@ -18,7 +18,7 @@ server <- function(input, output) {
     
     avg_price_and_ratings$category_name <- str_wrap(avg_price_and_ratings$category_name, width = 30)
     
-    p <- plot_ly(avg_price_and_ratings, x = ~avg_value, y = ~category_name, type = 'bar') %>%
+    p <- plot_ly(avg_price_and_ratings, x = ~avg_value, y = ~category_name, type = 'bar', marker = list(color = '#FF9900')) %>%
       layout(
         title = ifelse(input$chart_type == "price", "Average Price by Category", "Average Ratings by Category"),
         yaxis = list(title = "Category Name", tickfont = list(size = 8)),
@@ -38,7 +38,7 @@ server <- function(input, output) {
     
     
     
-    p <- plot_ly(category_price_summaries, x = ~category_name, y = ~sum_bestsellers, type = 'bar') %>%
+    p <- plot_ly(category_price_summaries, x = ~category_name, y = ~sum_bestsellers, type = 'bar', marker = list(color = '#FF9900')) %>%
       layout(
         title = "Total Number of Bestsellers on Amazon by Category",
         xaxis = list(title = "Category Name", tickfont = list(size = 8)),
@@ -52,7 +52,7 @@ server <- function(input, output) {
     small_sample_data <- amazon_all %>%
       slice_head(n = 1000)
     
-    p <- plot_ly(small_sample_data, x = ~boughtInLastMonth, y = ~reviews, type = 'scatter') %>%
+    p <- plot_ly(small_sample_data, x = ~boughtInLastMonth, y = ~reviews, type = 'scatter', marker = list(color = '#FF9900')) %>%
       layout(
         title = "Number of Buyers vs Number of Reviews",
         xaxis = list(title = "Number of Buyers Last Month"),
