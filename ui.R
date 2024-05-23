@@ -1,5 +1,6 @@
 library(shiny)
 library(ggplot2)
+library(plotly)
 
 dataset <- diamonds
 
@@ -11,7 +12,7 @@ ui <- navbarPage(
       titlePanel("Introduction"),
       sidebarLayout(
         sidebarPanel(
-          tags$h3("This study aims to investigate the relationship between the price of a product sold on Amazon, and its rating. The results from this study will be used to drive design decisions for what types of products businesses on Amazon should release in order to leave consumers satisfied with both price and condition, usefulness, and durability of a product.",style = "font-size: 20px; font-weight: normal; line-height: 1.5;"),
+          tags$h3("This study aims to investigate the relationship between the price of a product sold on Amazon, and its rating. The results from this study will be used to drive design decisions for what types of products businesses on Amazon should release in order to leave consumers satisfied with both price and condition, usefulness, and durability of a product.",style = "font-size: 18px; font-weight: normal; line-height: 1.5;"),
           img(src = "https://www.hatchwise.com/wp-content/uploads/2022/08/Amazon-Logo-2000-present-1024x576.jpeg", height=150, width=250)
         ),
         mainPanel(
@@ -45,10 +46,12 @@ ui <- navbarPage(
       titlePanel("Chart 1"),
       sidebarLayout(
         sidebarPanel(
-          h3("Sidebar content for Page 2")
+          tags$h3("A textual description of what the chart attempts to answer/understand",style = "font-size: 18px; font-weight: normal; line-height: 1.5;")
         ),
         mainPanel(
-          h3("Main content for Page 2")
+          plotlyOutput("chart1"),
+          sliderInput("obs", "Number of observations:", 
+                      min = 1, max = 2000, value = 500)
         )
       )
     )
@@ -59,10 +62,12 @@ ui <- navbarPage(
       titlePanel("Chart 2"),
       sidebarLayout(
         sidebarPanel(
-          h3("Sidebar content for Page 3")
+          tags$h3("A textual description of what the chart attempts to answer/understand",style = "font-size: 18px; font-weight: normal; line-height: 1.5;")
         ),
         mainPanel(
-          h3("Main content for Page 3")
+          plotlyOutput("chart2"),
+          sliderInput("obs", "Number of observations:", 
+                      min = 1, max = 2000, value = 500)
         )
       )
     )
@@ -73,10 +78,12 @@ ui <- navbarPage(
       titlePanel("Chart 3"),
       sidebarLayout(
         sidebarPanel(
-          h3("Sidebar content for Page 4")
+          tags$h3("A textual description of what the chart attempts to answer/understand",style = "font-size: 18px; font-weight: normal; line-height: 1.5;")
         ),
         mainPanel(
-          h3("Main content for Page 4")
+          plotlyOutput("chart3"),
+          sliderInput("obs", "Number of observations:", 
+                      min = 1, max = 2000, value = 500)
         )
       )
     )
@@ -87,10 +94,10 @@ ui <- navbarPage(
       titlePanel("Conclusion"),
       sidebarLayout(
         sidebarPanel(
-          h3("Sidebar content for Page 5")
+          tags$h3("3 insights",style = "font-size: 18px; font-weight: normal; line-height: 1.5;")
         ),
         mainPanel(
-          h3("Main content for Page 5")
+          h3("Main content")
         )
       )
     )
