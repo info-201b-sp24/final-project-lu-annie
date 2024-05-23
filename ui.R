@@ -14,12 +14,12 @@ ui <- navbarPage(
           img(src = "https://www.hatchwise.com/wp-content/uploads/2022/08/Amazon-Logo-2000-present-1024x576.jpeg", height=150, width=250)
         ),
         mainPanel(
+          h3("How are ratings of a product on Amazon related to the price of the product?"),
           h3("Which categories have the best selling Amazon products?"),
-          h3("Which Amazon product(s) have the most sales?"),
-          h3("How are ratings of a product on Amazon correlated with the price of the product?"),
-          tags$h3("The dataset can be found at https://www.kaggle.com/datasets/asaniczka/amazon-products-dataset-2023-1-4m-products/data?select=amazon_products.csv.
+          h3("Are number of purchases in the last month and number of reviews correlated?"),
+          tags$h3("The dataset can be found at", tags$a("https://www.kaggle.com/datasets/asaniczka/amazon-products-dataset-2023-1-4m-products/data?select=amazon_products.csv"),
 
-              The person that collected the data was a user named ASANICZKA.
+            ". The person that collected the data was a user named ASANICZKA.
              
              The data from the csv files were scraped from Amazon.com.
              
@@ -44,12 +44,14 @@ ui <- navbarPage(
       titlePanel("Chart 1"),
       sidebarLayout(
         sidebarPanel(
-          tags$h3("This chart attempts to answer the question: How are ratings of a product on Amazon correlated with the price of the product? It creates a scatterplot of items' ratings along with their price, and the slider function can be used to zoom in on specific rating ranges for products. Hover over any mark to view the product's rating and price.",style = "font-size: 18px; font-weight: normal; line-height: 1.5;")
+          tags$h3("This chart attempts to answer the question: How are ratings of a product on Amazon related to the price of the product? It appears that price has no clear relationship with the rating of a product as by switching between the graphs using the radio button widget, the categories in both graphs are not the same. Regardless, use the buttons and hover the mouse over a specific category to view more details.",style = "font-size: 18px; font-weight: normal; line-height: 1.5;")
         ),
         mainPanel(
           plotlyOutput("chart1"),
-          sliderInput("ratings", "Star Ratings:",
-                      min = 0, max = 5, step = 0.1, value = c(0, 5)),
+          radioButtons("chart_type", 
+                       "Select Chart Type to Order By:", 
+                       choices = c("Average Price" = "price", "Average Rating" = "stars"), 
+                       selected = "price")
         )
       )
     )
@@ -60,12 +62,15 @@ ui <- navbarPage(
       titlePanel("Chart 2"),
       sidebarLayout(
         sidebarPanel(
-          tags$h3("A textual description of what the chart attempts to answer/understand",style = "font-size: 18px; font-weight: normal; line-height: 1.5;")
+          tags$h3("This chart attempts to answer the question: Which categories have the best selling Amazon products? It shows up to the top ten categories with the most bestselling products on Amazon. The amount of categories shown can be adjusted with the slider. Hover over a category to view the total number of bestselling products it has.",style = "font-size: 18px; font-weight: normal; line-height: 1.5;")
         ),
         mainPanel(
           plotlyOutput("chart2"),
-          sliderInput("obs", "Number of observations:", 
-                      min = 1, max = 2000, value = 500)
+          sliderInput("num_categories", 
+                      "Number of Categories:", 
+                      min = 1, 
+                      max = 10, 
+                      value = 5)
         )
       )
     )
@@ -76,12 +81,11 @@ ui <- navbarPage(
       titlePanel("Chart 3"),
       sidebarLayout(
         sidebarPanel(
-          tags$h3("A textual description of what the chart attempts to answer/understand",style = "font-size: 18px; font-weight: normal; line-height: 1.5;")
+          tags$h3("This chart attempts to answer the question: Are number of purchases in the last month and number of reviews correlated? Based on the correlation coefficient of 0.269, there is not a strong relationship between number of purchases in the last month and number of reviews for an Amazon product. For fast loading, only the first 1000 products in the dataset have been plotted. Check the box to view the correlation line on the graph.",style = "font-size: 18px; font-weight: normal; line-height: 1.5;")
         ),
         mainPanel(
           plotlyOutput("chart3"),
-          sliderInput("obs", "Number of observations:", 
-                      min = 1, max = 2000, value = 500)
+          checkboxInput("show_line", "Show Correlation Line", value = FALSE)
         )
       )
     )
@@ -92,10 +96,10 @@ ui <- navbarPage(
       titlePanel("Conclusion"),
       sidebarLayout(
         sidebarPanel(
-          tags$h3("3 insights",style = "font-size: 18px; font-weight: normal; line-height: 1.5;")
+          tags$h3("Takeaways",style = "font-size: 18px; font-weight: normal; line-height: 1.5;")
         ),
         mainPanel(
-          h3("Main content")
+          h3("3 insights")
         )
       )
     )
